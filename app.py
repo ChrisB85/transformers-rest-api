@@ -17,7 +17,6 @@ def convert_audio_to_text():
 
         # Perform automatic speech recognition on the audio file
         text = asr_pipeline(audio_file.read())
-        print("The Array is: ", text)
 
         return jsonify(text), 200
 
