@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
 from transformers import pipeline
+import torch
 
 app = Flask(__name__)
 
 # Create a pipeline for automatic speech recognition using the specific model
-asr_pipeline = pipeline(task="automatic-speech-recognition", model="bardsai/whisper-medium-pl")
+asr_pipeline = pipeline(task="automatic-speech-recognition", model="bardsai/whisper-medium-pl", device=0 if torch.cuda.is_available() else -1)
 
 @app.route('/convert_audio_to_text', methods=['POST'])
 def convert_audio_to_text():

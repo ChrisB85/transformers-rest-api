@@ -11,3 +11,10 @@ services:
       - ./:/app
     environment:
       - FLASK_APP=app.py
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
